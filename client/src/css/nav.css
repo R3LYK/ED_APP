@@ -1,0 +1,41 @@
+.nav {
+    background-color: #3a4060;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    position: fixed;
+    top: 0;
+    left: 0; /* lign with the left edge */
+    width: 100%;
+    z-index: 9999; /* Ensure it appears above other content */
+  }
+  
+  
+  .nav a {
+    display: flex;
+    color: #fabd6c;
+    text-decoration: none;
+    padding: .75rem;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    height: 100%;
+    align-items: center;
+  }
+  
+  .nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: .5rem;
+  }
+  
+  .nav a.active {
+    background-color: #555;
+  }
+  
+  .nav a:hover {
+    background-color: #599;
+  }

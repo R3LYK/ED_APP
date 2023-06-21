@@ -1,0 +1,18 @@
+// Cross Origin Resource Sharing
+// allowedOrigins is an array of allowed domains
+// !!!IMPORTANT!!!: remove !origin after testing/development
+import allowedOrigins from "./allowedOrigins.js";
+
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Origin not allowed by CORS"));
+    }
+  },
+  optionsSuccessStatus: 200,
+};
+
+export default corsOptions;

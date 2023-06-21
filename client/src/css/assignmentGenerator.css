@@ -1,0 +1,71 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .teacher-lesson-plans-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0rem;
+    margin-top: 0rem;
+    height: 75vh;
+    width: 100%;
+  }
+  
+  .lesson-plans-title {
+    margin-top: 2rem;
+  }
+  
+  .gpt-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+    width: 75%;
+  }
+  
+  .gpt-form label {
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+  
+  .gpt-form label::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+  }
+  
+  .gpt-form .input-container {
+    width: 100%;
+  }
+  
+  .gpt-form .TextareaAutosize {
+    font-family: "Nunito", sans-serif;
+    font-size: 22px;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  textarea {
+    width: 100%;
+  }
+  
+  .gpt-form button {
+    align-self: center;
+    padding: 0.5rem 1rem;
+  }
+  

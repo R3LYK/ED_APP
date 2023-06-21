@@ -1,0 +1,31 @@
+.create-classes-form {
+    margin-top: 20px;
+  }
+  
+  .input-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  label {
+    margin-right: 10px;
+  }
+  
+  .select-input {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+  
+  .hovered-items-container {
+    margin-top: 20px;
+  }
+  
+  .hovered-item {
+    padding: 8px;
+    background-color: #f4f4f4;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    
+  }
+  
