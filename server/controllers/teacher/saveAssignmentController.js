@@ -20,8 +20,8 @@ const saveAssignment = async (req, res) => {
     console.log("Assignment saved:", assignment);
 
     res.status(201).json({ message: "Assignment saved successfully!" });
-  } catch (error) {
-    console.error("Error saving assignment:", error);
+  } catch (err) {
+    console.error("Error saving assignment:", err);
     res.status(500).json({ message: "Error saving assignment" });
   }
 };

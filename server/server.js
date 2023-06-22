@@ -15,6 +15,7 @@ import persistentRouter from "./routes/externalAPI/persistentRouter.js";
 import storeClassCodeRouter from "./routes/api/teacher/storeClassCode.js";
 import classCodeRouter from "./routes/api/teacher/classCodeRouter.js";
 import saveAssignmentRouter from "./routes/api/teacher/saveAssignments.js";
+import saveStudentRouter from "./routes/api/teacher/saveStudent.js";
 import deleteConvoRouter from "./routes/api/teacher/deleteConvo.js";
 import getTeacherClassRouter from "./routes/api/teacher/getTeacherClass.js";
 import verifyJWT from "./middleware/verifyJWT.js";
@@ -69,6 +70,7 @@ app.use("/deleteConvo", deleteConvoRouter);
 app.use("/saveAssignment", saveAssignmentRouter);
 app.use("/store_class_code", storeClassCodeRouter);
 app.use("/teacher", getTeacherClassRouter);
+app.use("/save_student", saveStudentRouter);
 
 // Not sure that this will work
 // part of it (fetching the classes from the db) works for sure, 

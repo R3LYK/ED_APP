@@ -4,6 +4,7 @@ import GetClassData from "../components/teacher/classCodes/GetClassData";
 import SubmitButton from "../components/teacher/classCodes/StoreTeachClassCodes";
 import AddNewClassCodeButton from "../components/teacher/classCodes/AddNewClassCodeButton";
 import GetTeacherClasses from "../components/teacher/students/GetTeacherClasses";
+import BuildClass from "../components/teacher/students/BuildClass";
 
 const CreateClasses = () => {
   //classCode states
@@ -13,6 +14,7 @@ const CreateClasses = () => {
   const [isCodeSaved, setIsCodeSaved] = useState(false);
   const [teacherClasses, setTeacherClasses] = useState([]);
   const [selectedClassCode, setSelectedClassCode] = useState("");
+
   //classStudent states
 
   console.log(classCode);
@@ -24,6 +26,7 @@ const CreateClasses = () => {
   const handleClassCodeChange = (e) => {
     const value = e.target.value;
     setSelectedClassCode(value);
+    console.log("selectedClassCode:", selectedClassCode);
   };
 
   const handleClassTypeChange = (e) => {
@@ -75,6 +78,9 @@ const CreateClasses = () => {
                 value={classType}
                 onChange={handleClassTypeChange}
               >
+                {/* need to grab these from the backend and display dynamically
+                    as the user's should be able to add thier own if they don't
+                    already exist. */}
                 <option value="">Select a class type</option>
                 <option value="language_arts">Language Arts</option>
                 <option value="mathematics">Mathematics</option>
@@ -94,7 +100,7 @@ const CreateClasses = () => {
                 value={selectedClassCode}
                 onChange={handleClassCodeChange}
               >
-                <option value="">Select a class type</option>
+                <option value="">Choose class code</option>
                 {teacherClasses.map((classCode, index) => (
                   <option key={index} value={classCode}>
                     {classCode}
@@ -104,13 +110,7 @@ const CreateClasses = () => {
             </div>
           </form>
         </div>
-        <div className="name-class-container">
-          <h4>Name class</h4>
-          <input type="text" placeholder="ex: 1st period" />
-        </div>
-        <div className="add-students-container">
-          <h4>Add students</h4>
-        </div>
+        <BuildClass selectedClassCode={selectedClassCode}/>
       </div>
 
       {classType && (

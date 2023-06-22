@@ -1,115 +1,111 @@
-import { useState } from 'react';
+import { useState } from "react";
+import SaveStudent from "./SaveStudent";
 
-const BuildClass = () => {
-  const [className, setClassName] = useState('');
-  const [classType, setClassType] = useState('');
-  const [students, setStudents] = useState([]);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [studentId, setStudentId] = useState('');
+const BuildClass = ({ selectedClassCode }) => {
+  // This is the class code that the teacher selected
+  const [className, setClassName] = useState("");
+  const [studentFname, setStudentFName] = useState("");
+  const [studentLname, setstudentLname] = useState("");
+  const [studentId, setStudentId] = useState("");
+  const [studentEmail, setStudentEmail] = useState("");
+  const [errMsg, setErrMsg] = useState("");
 
   const handleClassNameChange = (e) => {
-    setClassName(e.target.value);
+    const value = e.target.value;
+    setClassName(value);
   };
 
-  const handleClassTypeChange = (e) => {
-    setClassType(e.target.value);
+  const handleStudentFNameChange = (e) => {
+    const value = e.target.value;
+    setStudentFName(value);
   };
 
-  const handleFirstNameChange = (e) => {
-    setFirstName(e.target.value);
-  };
-
-  const handleLastNameChange = (e) => {
-    setLastName(e.target.value);
+  const handlestudentLnameChange = (e) => {
+    const value = e.target.value;
+    setstudentLname(value);
   };
 
   const handleStudentIdChange = (e) => {
-    setStudentId(e.target.value);
+    const value = e.target.value;
+    setStudentId(value);
   };
 
-  const handleAddStudent = () => {
-    const newStudent = {
-      firstName,
-      lastName,
-      studentId,
-    };
+  const handleStudentEmailChange = (e) => {
+    const value = e.target.value;
+    setStudentEmail(value);
+  };
 
-    setStudents([...students, newStudent]);
-    setFirstName('');
-    setLastName('');
-    setStudentId('');
+  const handleStudentSubmit = () => {
+    if (
+      studentFname.trim() === "" ||
+      studentLname.trim() === "" ||
+      studentId.trim() === "" ||
+      studentEmail.trim() === ""
+    ) {
+      setErrMsg("Field cannot be blank");
+    } else {
+      setStudentFName("");
+      setstudentLname("");
+      setStudentId("");
+      setStudentEmail("");
+      setErrMsg("");
+    }
   };
 
   return (
     <div>
-      <h2>Add Students</h2>
-      <div>
-        <label htmlFor="class-name-input">Class Name:</label>
+      <div className="name-class-container">
+        <h4>Name class</h4>
         <input
           type="text"
-          id="class-name-input"
           value={className}
           onChange={handleClassNameChange}
+          placeholder="ex: 1st period"
         />
       </div>
-      <div>
-        <label htmlFor="class-type-select">Class Type:</label>
-        <select id="class-type-select" value={classType} onChange={handleClassTypeChange}>
-          <option value="">Select a class type</option>
-          <option value="language_arts">Language Arts</option>
-          <option value="mathematics">Mathematics</option>
-          <option value="science">Science</option>
-          <option value="social_studies">Social Studies</option>
-        </select>
-      </div>
-      <div>
-        <h3>Add Student:</h3>
-        <div>
-          <label htmlFor="first-name-input">First Name:</label>
+      {/* This should take entire classes, but i'm unsure of the data structure available to most teachers.
+            Having it like this allows me to set-up a rough backend. The controller will need to be tweaked though.*/}
+      <div className="add-students-container">
+        <form className="add-students-form">
+          <h4>Add students</h4>
           <input
             type="text"
-            id="first-name-input"
-            value={firstName}
-            onChange={handleFirstNameChange}
+            value={studentFname}
+            onChange={handleStudentFNameChange}
+            placeholder="Lindon"
           />
-        </div>
-        <div>
-          <label htmlFor="last-name-input">Last Name:</label>
           <input
             type="text"
-            id="last-name-input"
-            value={lastName}
-            onChange={handleLastNameChange}
+            value={studentLname}
+            onChange={handlestudentLnameChange}
+            placeholder="Wei-Shi"
           />
-        </div>
-        <div>
-          <label htmlFor="student-id-input">Student ID:</label>
           <input
             type="text"
-            id="student-id-input"
             value={studentId}
             onChange={handleStudentIdChange}
+            placeholder="student-id"
           />
-        </div>
-        <button onClick={handleAddStudent}>Add Student</button>
-      </div>
-      <div>
-        <h3>Class Information:</h3>
-        <p>Class Name: {className}</p>
-        <p>Class Type: {classType}</p>
-        <h4>Students:</h4>
-        <ul>
-          {students.map((student, index) => (
-            <li key={index}>
-              {student.firstName} {student.lastName} ({student.studentId})
-            </li>
-          ))}
-        </ul>
+          <input
+            type="text"
+            value={studentEmail}
+            onChange={handleStudentEmailChange}
+            placeholder="student-email"
+          />
+          {errMsg && <p>{errMsg}</p>}
+          <SaveStudent
+            onStudentSubmit={handleStudentSubmit}
+            selectedClassCode={selectedClassCode}
+            className={className}
+            studentFname={studentFname}
+            studentLname={studentLname}
+            studentId={studentId}
+            studentEmail={studentEmail}
+          />
+        </form>
       </div>
     </div>
   );
 };
 
 export default BuildClass;
-

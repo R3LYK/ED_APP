@@ -1,7 +1,11 @@
 import mongoose from 'mongoose';
 
-const classSchema = new mongoose.Schema({
-    className: {
+const cohortSchema = new mongoose.Schema({
+    cohortName: {
+        type: String,
+        required: true,
+    },
+    cohortCode: {
         type: String,
         required: true,
     },
@@ -30,4 +34,10 @@ const classSchema = new mongoose.Schema({
         }
     ],
 });
+
+mongoose.model('Cohort', cohortSchema);
+
+export default mongoose.model('Cohort');
+
+
 
