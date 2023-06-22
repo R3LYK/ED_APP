@@ -1,10 +1,11 @@
 import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
 import React, { useEffect, useState } from "react";
+import "../../../css/createClasses.css";
 
 const GET_CLASS_CODES_URL = "/class_codes";
 
-const GetExistClassCode = ({ classType, onItemClick }) => {
+const GetClassData = ({ classType, onItemClick }) => {
   const { auth } = useAuth();
   const accessToken = auth.accessToken;
   const [classCodes, setClassCodes] = useState([]);
@@ -33,10 +34,22 @@ const GetExistClassCode = ({ classType, onItemClick }) => {
 
   return (
     <div>
+     
       <div className="hovered-items-container">
+      <div className="hovered-description-container">
+        <p>
+          Select any class codes that apply to any of your classes. These
+          selections will help us determine the difficulty level of questions to
+          generate.
+        </p>
+      </div>
         <ul>
           {classCodes.map((item, index) => (
-            <li key={index} className="hovered-item" onClick={() => onItemClick(item)}>
+            <li
+              key={index}
+              className="hovered-item"
+              onClick={() => onItemClick(item)}
+            >
               {item}
             </li>
           ))}
@@ -46,4 +59,4 @@ const GetExistClassCode = ({ classType, onItemClick }) => {
   );
 };
 
-export default GetExistClassCode;
+export default GetClassData;

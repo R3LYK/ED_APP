@@ -42,7 +42,7 @@ const SubmitButton = ({ classCode, onClassCodeSaved, isCodeSaved }) => {
   };
 
   return (
-    <div>
+    <div className="submit-button-container">
       {!isCodeSaved && ( // Render the button only if the code is not saved
         <button onClick={handleSubmit}>Submit</button>
       )}

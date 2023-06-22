@@ -16,6 +16,7 @@ import storeClassCodeRouter from "./routes/api/teacher/storeClassCode.js";
 import classCodeRouter from "./routes/api/teacher/classCodeRouter.js";
 import saveAssignmentRouter from "./routes/api/teacher/saveAssignments.js";
 import deleteConvoRouter from "./routes/api/teacher/deleteConvo.js";
+import getTeacherClassRouter from "./routes/api/teacher/getTeacherClass.js";
 import verifyJWT from "./middleware/verifyJWT.js";
 import logoutRouter from "./routes/api/logout.js";
 import mongoose from "mongoose";
@@ -67,8 +68,11 @@ app.use(verifyJWT); // Move the verifyJWT middleware here
 app.use("/deleteConvo", deleteConvoRouter);
 app.use("/saveAssignment", saveAssignmentRouter);
 app.use("/store_class_code", storeClassCodeRouter);
+app.use("/teacher", getTeacherClassRouter);
 
 // Not sure that this will work
+// part of it (fetching the classes from the db) works for sure, 
+//haven't tested the other part (posting the classes to the db)
 app.use("/class_codes", classCodeRouter)
 
 
