@@ -9,7 +9,7 @@ function Home() {
       </nav>
       <h1>Mr. Pettitt's science app</h1>
       <span className="home-link">
-        <Link to="/TeacherDashboard">TeacherDashboard</Link>
+        <Link to="/teacher_dashboard">TeacherDashboard</Link>
       </span>
       <span className="home-link">
         <Link to="/StudentDashboard">StudentDashboard</Link>

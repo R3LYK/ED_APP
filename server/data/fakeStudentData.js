@@ -1,4 +1,4 @@
-const fakeStudents = [
+export const fakeStudents = [
     {
       student: {
         firstName: 'Emily',
@@ -120,4 +120,128 @@ const fakeStudents = [
       }
     }
   ];
+
+  export const fakeStudents2 = [
+    {
+      student: {
+        firstName: 'Jacob',
+        lastName: 'Smith',
+        studentId: 'JS12345',
+        email: 'jacob.smith@example.com'
+      }
+    },
+    {
+      student: {
+        firstName: 'Emily',
+        lastName: 'Brown',
+        studentId: 'EB23456',
+        email: 'emily.brown@example.com'
+      }
+    },
+    {
+      student: {
+        firstName: 'Michael',
+        lastName: 'Jones',
+        studentId: 'MJ34567',
+        email: 'michael.jones@example.com'
+      }
+    },
+    {
+      student: {
+        firstName: 'Emma',
+        lastName: 'Garcia',
+        studentId: 'EG45678',
+        email: 'emma.garcia@example.com'
+      }
+    },
+    {
+      student: {
+        firstName: 'Joshua',
+        lastName: 'Taylor',
+        studentId: 'JT56789',
+        email: 'joshua.taylor@example.com'
+      }
+    },
+    {
+      student: {
+        firstName: 'Madison',
+        lastName: 'Anderson',
+        studentId: 'MA67890',
+        email: 'madison.anderson@example.com'
+      }
+    },
+    {
+      student: {
+        firstName: 'Ethan',
+        lastName: 'Thomas',
+        studentId: 'ET78901',
+        email: 'ethan.thomas@example.com'
+      }
+    },
+    {
+      student: {
+        firstName: 'Olivia',
+        lastName: 'Hernandez',
+        studentId: 'OH89012',
+        email: 'olivia.hernandez@example.com'
+      }
+    },
+    {
+      student: {
+        firstName: 'Daniel',
+        lastName: 'Moore',
+        studentId: 'DM90123',
+        email: 'daniel.moore@example.com'
+      }
+    },
+    {
+      student: {
+        firstName: 'Ava',
+        lastName: 'Martin',
+        studentId: 'AM01234',
+        email: 'ava.martin@example.com'
+      }
+    },
+    {
+      student: {
+        firstName: 'Matthew',
+        lastName: 'Jackson',
+        studentId: 'MJ12345',
+        email: 'matthew.jackson@example.com'
+      }
+    },
+    {
+      student: {
+        firstName: 'Sofia',
+        lastName: 'Lee',
+        studentId: 'SL23456',
+        email: 'sofia.lee@example.com'
+      }
+    },
+    {
+      student: {
+        firstName: 'Andrew',
+        lastName: 'Walker',
+        studentId: 'AW34567',
+        email: 'andrew.walker@example.com'
+      }
+    },
+    {
+      student: {
+        firstName: 'Abigail',
+        lastName: 'Hall',
+        studentId: 'AH45678',
+        email: 'abigail.hall@example.com'
+      }
+    },
+    {
+      student: {
+        firstName: 'William',
+        lastName: 'Allen',
+        studentId: 'WA56789',
+        email: 'william.allen@example.com'
+      }
+    }
+  ];
+  
   

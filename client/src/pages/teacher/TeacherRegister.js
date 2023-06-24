@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
-import axios from "../api/axios";
+import axios from "../../api/axios";
 import { FaInfoCircle, FaRegDizzy, FaRegGrinStars } from "react-icons/fa";
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;

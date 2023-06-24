@@ -1,5 +1,5 @@
 import express from 'express';
-import persistentController from '../../controllers/openAI/persistConvoController.js';
+import persistentController from '../../controllers/externalAPI/persistConvoController.js';
 
 const router = express.Router();
 

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "../css/createClasses.css";
-import GetClassData from "../components/teacher/classCodes/GetClassData";
-import SubmitButton from "../components/teacher/classCodes/StoreTeachClassCodes";
-import AddNewClassCodeButton from "../components/teacher/classCodes/AddNewClassCodeButton";
-import GetTeacherClasses from "../components/teacher/students/GetTeacherClasses";
-import BuildClass from "../components/teacher/students/BuildClass";
+import "../../css/createClasses.css";
+import GetClassData from "../../components/teacher/classCodes/GetClassData";
+import SubmitButton from "../../components/teacher/classCodes/StoreTeachClassCodes";
+import AddNewClassCodeButton from "../../components/teacher/classCodes/AddNewClassCodeButton";
+import GetTeacherClasses from "../../components/teacher/classCodes/GetTeacherClasses";
+import BuildClass from "../../components/teacher/cohorts/BuildClass";
 
 const CreateClasses = () => {
   //classCode states
@@ -14,8 +14,6 @@ const CreateClasses = () => {
   const [isCodeSaved, setIsCodeSaved] = useState(false);
   const [teacherClasses, setTeacherClasses] = useState([]);
   const [selectedClassCode, setSelectedClassCode] = useState("");
-
-  //classStudent states
 
   console.log(classCode);
 

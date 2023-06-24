@@ -2,7 +2,7 @@ import React, { useState, createContext, useContext } from 'react';
 import axios from '../../../api/axios';
 import useAuth from '../../../hooks/useAuth';
 import CreateAssignment from './CreateAssignment';
-import TeacherDashboard from '../../../pages/TeachersDashboard';
+import TeacherDashboard from '../../../pages/teacher/TeachersDashboard';
 
 export const QuestionContext = createContext();
 

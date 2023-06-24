@@ -7,11 +7,13 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import StudentRegister from "./pages/StudentRegister";
-import TeacherRegister from "./pages/TeacherRegister";
-import TeacherDashboard from "./pages/TeachersDashboard";
+import TeacherRegister from "./pages/teacher/TeacherRegister";
+import TeacherDashboard from "./pages/teacher/TeachersDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
-import CreateClasses from "./pages/CreateClasses";
+import CreateClasses from "./pages/teacher/CreateClasses";
+import ClassOverview from "./pages/teacher/ClassOverview";
 import NoPage from "./pages/NoPage";
+import AssignWork from "./pages/teacher/AssignWork";
 
 const App = () => {
   return (
@@ -28,8 +30,10 @@ const App = () => {
           {/* protected routes */}
           <Route element={<LoginPersist />}>
             <Route element={<RequireAuth allowedRoles={[1002]} />}>
-              <Route path="/TeacherDashboard" element={<TeacherDashboard />} />
-              <Route path="/TeacherDashboard/CreateClasses" element={<CreateClasses />} />
+              <Route path="/teacher_dashboard" element={<TeacherDashboard />} />
+              <Route path="/teacher_dashboard/create_classes" element={<CreateClasses />} />
+              <Route path="/teacher_dashboard/class_overview" element={<ClassOverview />} />
+              <Route path="/teacher_dashboard/assign_work" element={<AssignWork />} />
             </Route>
             <Route element={<RequireAuth allowedRoles={[1003]} />}>
               <Route path="/StudentDashboard" element={<StudentDashboard />} />
