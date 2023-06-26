@@ -50,35 +50,34 @@ const GetTeacherCohorts = ({ showCohortNames, showStudentNames }) => {
   return (
     <div>
       {showCohortNames && (
-        <div>
-          <h2>Teacher Cohorts:</h2>
-          <ul>
-            {cohorts.map((cohort) => (
-              <li
-                key={cohort.cohortName}
-                onClick={() => handleCohortClick(cohort.cohortName)}
-                style={{ cursor: "pointer" }}
-              >
-                {cohort.cohortName}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul>
+          {cohorts.map((cohort) => (
+            <li
+              key={cohort.cohortName}
+              onClick={() => handleCohortClick(cohort.cohortName)}
+              style={{ cursor: "pointer" }}
+            >
+              {cohort.cohortName}
+            </li>
+          ))}
+        </ul>
       )}
-      {showStudentNames && selectedCohort && (
-        <div>
-          <h2>Selected Cohort:</h2>
-          <ul>
-            {cohorts
-              .find((cohort) => cohort.cohortName === selectedCohort)
-              .students.map((student, index) => (
-                <li key={index}>
-                  {student.firstName} {student.lastName}
-                </li>
-              ))}
-          </ul>
-        </div>
-      )}
+      <div>
+        {showStudentNames && selectedCohort && (
+          <div>
+            <h2>Selected Cohort:</h2>
+            <ul>
+              {cohorts
+                .find((cohort) => cohort.cohortName === selectedCohort)
+                .students.map((student, index) => (
+                  <li key={index}>
+                    {student.firstName} {student.lastName}
+                  </li>
+                ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

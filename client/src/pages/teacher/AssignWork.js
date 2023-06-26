@@ -11,8 +11,8 @@ const AssignWork = () => {
 
   return (
     <div>
-      <h2>Assign Work</h2>
-      {/* <GetTeacherCohorts showCohortNames={true} showStudentNames={false} /> */}
+      <h2>Choose class</h2>
+       <GetTeacherCohorts showCohortNames={true} showStudentNames={false} /> 
       <button onClick={handleGetAssignmentsClick}>Get Assignments</button>
       {getAssignmentsClicked && (
         <GetAssignments showAssignmentNames={true} onGetAssignments={true} showQuestions={true} />

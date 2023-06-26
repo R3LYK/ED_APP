@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../../css/createClasses.css";
+import createCohortStyles from "../../css/createClasses.module.css";
 import GetClassData from "../../components/teacher/classCodes/GetClassData";
-import SubmitButton from "../../components/teacher/classCodes/StoreTeachClassCodes";
+import SubmitCodeButton from "../../components/teacher/classCodes/StoreTeachClassCodes";
 import AddNewClassCodeButton from "../../components/teacher/classCodes/AddNewClassCodeButton";
 import GetTeacherClasses from "../../components/teacher/classCodes/GetTeacherClasses";
 import BuildClass from "../../components/teacher/cohorts/BuildClass";
@@ -56,29 +56,17 @@ const CreateClasses = () => {
   };
 
   return (
-    <div>
-      <h1 className="lesson-plans-title">Create Classes</h1>
-      <p>This is where teachers can create classes.</p>
-      <p>And probably other stuff...</p>
-      {/* I'm thinking this will eventually be tied to a flag on the user.
-          It only needs to show up initially if they haven't selected 
-          class codes yet. We will block all the functionality below this
-          until they choose their classes. Then, we will give the option on
-          the 'choose-class-type' to add additional, in case they need to add
-          classes later. */}
-      <div className="create-classes-flex-container">
-        <div className="choose-class-type">
-          <form className="create-classes-form">
+    <div className={createCohortStyles["create-class-container"]}>
+      <div className={createCohortStyles["flex-1"]}>
+        <div>
+          <form>
             <label htmlFor="classType-input">Add your class code:</label>
-            <div className="input-container">
+            <div>
               <select
                 id="classType-input"
                 value={classType}
                 onChange={handleClassTypeChange}
               >
-                {/* need to grab these from the backend and display dynamically
-                    as the user's should be able to add thier own if they don't
-                    already exist. */}
                 <option value="">Select a class type</option>
                 <option value="language_arts">Language Arts</option>
                 <option value="mathematics">Mathematics</option>
@@ -88,11 +76,11 @@ const CreateClasses = () => {
             </div>
           </form>
         </div>
-        <div className="choose-class-type">
+        <div>
           <GetTeacherClasses onTeacherClassChange={handleTeacherClassChange} />
-          <form className="choose-class-type-form">
+          <form>
             <label htmlFor="classType-input">Choose the class code</label>
-            <div className="input-container">
+            <div>
               <select
                 id="classType-input"
                 value={selectedClassCode}
@@ -108,41 +96,73 @@ const CreateClasses = () => {
             </div>
           </form>
         </div>
-        <BuildClass selectedClassCode={selectedClassCode}/>
+        <BuildClass selectedClassCode={selectedClassCode} />
       </div>
 
       {classType && (
         <>
-          <GetClassData classType={classType} onItemClick={handleItemClick} />
-          {!isCodeSaved &&
-            classCode.length > 0 && ( // Render the classCode list only if it's not saved and classCode has items
-              <div className="selected-classes-container">
-                <h3>Selected Classes:</h3>
-                <ul>
-                  {classCode.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
+          <div className={createCohortStyles["flex-container"]}>
+            <div className={createCohortStyles["flex-2"]}>
+              <div className={createCohortStyles["code-description-container"]}>
+                <p>
+                  Select any class codes that apply to any of your classes.
+                  These selections will help us determine the difficulty level
+                  of questions to generate.
+                </p>
+              </div>
+              <div className={createCohortStyles["code-items-container"]}>
+                <ul className={createCohortStyles["code-items"]}>
+                  <GetClassData
+                    styles={createCohortStyles}
+                    classType={classType}
+                    onItemClick={handleItemClick}
+                  />
                 </ul>
               </div>
+            </div>
+            {!isCodeSaved && classCode.length > 0 && (
+              <div className={createCohortStyles["selected-classes-container"]}>
+                <span className={createCohortStyles["horizontal-line"]}></span>
+                <div
+                  className={
+                    createCohortStyles["selected-classes-flex-container"]
+                  }
+                >
+                  <h3>Selected Classes:</h3>
+                  <ul>
+                    {classCode.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                  <div>
+                    {!isCodeSaved && (
+                      <SubmitCodeButton
+                        styles={createCohortStyles}
+                        classCode={classCode}
+                        onClassCodeSaved={handleClassCodeSaved}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
             )}
-          {!isCodeSaved && ( // Render the SubmitButton component only if code is not saved
-            <SubmitButton
-              classCode={classCode}
-              onClassCodeSaved={handleClassCodeSaved}
-            />
-          )}
-          <div className="custom-code-container">
-            <input
-              type="text"
-              value={customCode}
-              onChange={handleCustomCodeChange}
-            />
-            <AddNewClassCodeButton
-              classType={classType}
-              customCode={customCode}
-              text="Add New Code"
-              onCustomCodeSubmit={handleCustomCodeSubmit}
-            />
+            <div className={createCohortStyles["custom-code-container"]}>
+              <span className={createCohortStyles["horizontal-line"]}></span>
+              <h5>Don't see the code you're looking for? Add a new one!!</h5>
+              <div className={createCohortStyles["custom-flex-container"]}>
+                <input
+                  type="text"
+                  value={customCode}
+                  onChange={handleCustomCodeChange}
+                />
+                <AddNewClassCodeButton
+                  classType={classType}
+                  customCode={customCode}
+                  text="Add New Code"
+                  onCustomCodeSubmit={handleCustomCodeSubmit}
+                />
+              </div>
+            </div>
           </div>
         </>
       )}

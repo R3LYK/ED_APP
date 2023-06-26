@@ -4,7 +4,7 @@ import useAuth from '../../../hooks/useAuth';
 
 const SUBMIT_CODES_URL = '/store_class_code';
 
-const SubmitButton = ({ classCode, onClassCodeSaved, isCodeSaved }) => {
+const SubmitCodeButton = ({ classCode, onClassCodeSaved, isCodeSaved, styles }) => {
   const { auth } = useAuth();
   const accessToken = auth.accessToken;
   const TeacherId = auth.id;
@@ -42,7 +42,7 @@ const SubmitButton = ({ classCode, onClassCodeSaved, isCodeSaved }) => {
   };
 
   return (
-    <div className="submit-button-container">
+    <div className={styles["submit-button-container"]}>
       {!isCodeSaved && ( // Render the button only if the code is not saved
         <button onClick={handleSubmit}>Submit</button>
       )}
@@ -50,4 +50,4 @@ const SubmitButton = ({ classCode, onClassCodeSaved, isCodeSaved }) => {
   );
 };
 
-export default SubmitButton;
+export default SubmitCodeButton;

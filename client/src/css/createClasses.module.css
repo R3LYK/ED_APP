@@ -1,0 +1,137 @@
+.create-class-container {
+  height: 90vh;
+  width: 100vw;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: row; /* Set flex-direction to "row" */
+}
+
+.flex-1 {
+  flex: 0 0 20%;
+  background-color: #fabd6c;
+  padding: 1rem;
+  border-radius: .7rem;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 80%;
+  height: 90vh;
+}
+
+.code-description-container p {
+  font-size: 22px;
+  font-weight: bold;
+  color: black;
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
+.code-items-container {
+  display: flex;
+  flex-direction: column;
+  column-count: 2;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 20px;
+}
+
+.code-items-container ul {
+  column-count: 2;
+  column-gap: 2rem;
+}
+
+.code-items-container ul li {
+  padding-top: .2rem;
+}
+
+.code-items {
+  list-style: none;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.flex-2 {
+  flex: 1;
+  align-self: center;
+  justify-content: space-around;
+}
+
+.horizontal-line {
+  border-bottom: 3px dashed darkgray;
+  width: 90%;
+  margin: 0 auto;
+  display: block;
+  padding-top: 0.5rem;
+}
+
+.flex-2 h3 {
+  background-color: antiquewhite;
+}
+
+.selected-classes-container {
+  display: block;
+}
+
+.selected-classes-flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem 1rem;
+}
+
+.selected-classes-flex-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  column-count: 2;
+}
+
+.selected-classes-flex-container button {
+  margin: 0;
+  padding: .1rem;
+  font-size: 16px;
+  margin-right: 9rem;
+}
+
+.submit-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-code-container {
+  display: block;
+  text-align: center;
+}
+
+.custom-code-container h5 {
+  padding-top: 1rem;
+}
+
+.custom-flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  padding: .5rem 1rem;
+}
+
+.custom-flex-container input {
+  padding: .5rem, 1rem;
+  font-size: 16px;
+  margin-right: 2rem;
+}
+
+.custom-code-container button {
+  margin: 0;
+  padding: .1rem;
+  font-size: 16px;
+}
+
+
+
+

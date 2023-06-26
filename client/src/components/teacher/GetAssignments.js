@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../api/axios.js";
 import useAuth from "../../hooks/useAuth.js";
+import "../../pages/teacher/teacherCSS/assignWork.css";
 
 const GET_ASSIGNMENTS_URL = "/get_assignemnts";
 
@@ -60,7 +61,7 @@ const GetAssignments = ({
   return (
     <div>
       {showAssignmentNames && (
-        <div>
+        <div className="choose-class-container">
           <h2>Assignments:</h2>
           <ul>
             {assignments.map((assignment, index) => (
@@ -76,7 +77,7 @@ const GetAssignments = ({
         </div>
       )}
       {showQuestions && selectedAssignment && (
-        <div>
+        <div className="questions-container">
           <h2>Questions:</h2>
           <ul>
             {assignments

@@ -1,12 +1,15 @@
 import React from "react";
 import GetTeacherCohorts from "../../components/teacher/GetTeacherCohorts";
+import classOverviewStyles from "../../css/classOverview.module.css";
 
 const ClassOverview = () => {
   return (
     <div>
-      <h2>Class Overview</h2>
-      <div>
-        <GetTeacherCohorts showCohortNames={true} showStudentNames={true} />
+      <div className={classOverviewStyles["cohort-flex-container"]}>
+        <h2>Teacher Cohorts:</h2>
+        <ul>
+          <GetTeacherCohorts showCohortNames={true} showStudentNames={true} />
+        </ul>
       </div>
     </div>
   );
