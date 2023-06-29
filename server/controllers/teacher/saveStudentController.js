@@ -3,6 +3,7 @@ import Teacher from "../../schemas/teachers.js";
 
 const saveStudent = async (req, res) => {
   const { cohortName, cohortCode, teacherId, students } = req.body;
+  console.log("saveStudentController", req.body)
 
   try {
     console.log("Creating class:", cohortName);
