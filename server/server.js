@@ -21,6 +21,8 @@ import logoutRouter from "./routes/api/logout.js";
 import mongoose from "mongoose";
 import connectDB from "./config/dbConn.js";
 
+import assignmentEventRouter from "./routes/api/eventRouter.js";
+
 // These need to be their own router
 import saveAssignmentRouter from "./routes/api/teacher/saveAssignments.js";
 import getAssignmentsRouter from "./routes/api/teacher/getAssignments.js";
@@ -30,6 +32,7 @@ import persistentRouter from "./routes/externalAPI/persistentRouter.js";
 // Import tools for dev purposes
 import seedClassCodes from "./tools/seedClassCodes.js";
 import seedTestClass from "./tools/seedTestClass.js";
+import assignmentEvent from "./schemas/assignmentEvent.js";
 
 dotenv.config();
 
@@ -77,6 +80,9 @@ app.use("/store_class_code", storeClassCodeRouter);
 app.use("/teacher", getTeacherClassRouter);
 app.use("/save_student", saveStudentRouter);
 app.use("/get_teacher_cohorts", getCohortsRouter);
+
+// routes for calendar events
+app.use("/add_event", assignmentEventRouter);
 
 // these two 'assignment' routes need to have their own router
 app.use("/saveAssignment", saveAssignmentRouter);

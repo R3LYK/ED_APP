@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth.js";
 
 const GET_COHORTS_URL = "/get_teacher_cohorts";
 
-const GetTeacherCohorts = ({ showCohortNames, showStudentNames }) => {
+const GetTeacherCohorts = ({ showCohortNames, showStudentNames, renderLayout }) => {
   const { auth } = useAuth();
   const accessToken = auth.accessToken;
   const teacherId = auth.id;
@@ -49,35 +49,13 @@ const GetTeacherCohorts = ({ showCohortNames, showStudentNames }) => {
 
   return (
     <div>
-      {showCohortNames && (
-        <ul>
-          {cohorts.map((cohort) => (
-            <li
-              key={cohort.cohortName}
-              onClick={() => handleCohortClick(cohort.cohortName)}
-              style={{ cursor: "pointer" }}
-            >
-              {cohort.cohortName}
-            </li>
-          ))}
-        </ul>
-      )}
-      <div>
-        {showStudentNames && selectedCohort && (
-          <div>
-            <h2>Selected Cohort:</h2>
-            <ul>
-              {cohorts
-                .find((cohort) => cohort.cohortName === selectedCohort)
-                .students.map((student, index) => (
-                  <li key={index}>
-                    {student.firstName} {student.lastName}
-                  </li>
-                ))}
-            </ul>
-          </div>
-        )}
-      </div>
+      {renderLayout({
+        showCohortNames,
+        showStudentNames,
+        cohorts,
+        selectedCohort,
+        handleCohortClick,
+      })}
     </div>
   );
 };

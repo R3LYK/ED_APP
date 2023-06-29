@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "../../api/axios.js";
 import useAuth from "../../hooks/useAuth.js";
-import "../../pages/teacher/teacherCSS/assignWork.css";
 
 const GET_ASSIGNMENTS_URL = "/get_assignemnts";
 
-const GetAssignments = ({
-  showAssignmentNames,
-  onGetAssignments,
-  showQuestions,
-}) => {
+const GetAssignments = ({ renderLayout }) => {
   const { auth } = useAuth();
   const accessToken = auth.accessToken;
   const teacherId = auth.id;
@@ -45,10 +40,8 @@ const GetAssignments = ({
   };
 
   useEffect(() => {
-    if (onGetAssignments) {
-      getAssignments();
-    }
-  }, [onGetAssignments]);
+    getAssignments();
+  }, []);
 
   const handleAssignmentClick = (assignmentName) => {
     if (selectedAssignment === assignmentName) {
@@ -60,39 +53,11 @@ const GetAssignments = ({
 
   return (
     <div>
-      {showAssignmentNames && (
-        <div className="choose-class-container">
-          <h2>Assignments:</h2>
-          <ul>
-            {assignments.map((assignment, index) => (
-              <li
-                key={index}
-                onClick={() => handleAssignmentClick(assignment.assignmentName)}
-                style={{ cursor: "pointer" }}
-              >
-                {assignment.assignmentName}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {showQuestions && selectedAssignment && (
-        <div className="questions-container">
-          <h2>Questions:</h2>
-          <ul>
-            {assignments
-              .find(
-                (assignment) => assignment.assignmentName === selectedAssignment
-              )
-              .questions.map((question, index) => (
-                <li key={index}>
-                  <p>Question: {question.question}</p>
-                  <p>Answer: {question.answer}</p>
-                </li>
-              ))}
-          </ul>
-        </div>
-      )}
+      {renderLayout({
+        assignments,
+        selectedAssignment,
+        handleAssignmentClick,
+      })}
     </div>
   );
 };

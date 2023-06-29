@@ -3,8 +3,6 @@ import Cohort from "../../schemas/cohort.js";
 const getTeacherCohorts = async (req, res) => {
   const { teacherId } = req.params;
 
-  console.log("teacherId:", teacherId);
-
   try {
     const foundCohorts = await Cohort.find({ teacher: teacherId });
 
@@ -13,6 +11,7 @@ const getTeacherCohorts = async (req, res) => {
         .status(404)
         .json({ message: "No cohorts found for the teacher" });
     } else {
+      console.log("foundCohorts:", foundCohorts);
       const cohorts = foundCohorts.map((cohort) => ({
         cohortName: cohort.cohortName,
         cohortCode: cohort.cohortCode,

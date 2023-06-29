@@ -15,10 +15,27 @@ const assignmentEventSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  completed: {
+    type: Boolean,
+    default: false,
+  },
+  completedAt: {
+    type: Date,
+  },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Teacher",
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
   },
+  role: {
+    type: String,
+    enum: ["student", "teacher"],
+    required: true,
+  }
 });
 
 mongoose.model("AssignmentEvent", assignmentEventSchema);

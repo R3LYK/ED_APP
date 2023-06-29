@@ -1,7 +1,6 @@
 import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
 import React, { useEffect, useState } from "react";
-//import styles from "../../../css/createClasses.module.css";
 
 const GET_CLASS_CODES_URL = "/class_codes";
 
