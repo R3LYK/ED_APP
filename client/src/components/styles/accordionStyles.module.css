@@ -1,0 +1,49 @@
+.accordion {
+    position: relative;
+    max-width: 8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .accordion button {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.7rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .accordion button.expanded {
+    border-radius: 0.2rem 0.2rem 0 0;
+  }
+
+.accordion button:hover {
+    background: rgb(133, 136, 133);
+}
+
+.content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 0 0 0.2rem 0.2rem;
+    z-index: 1;
+  }
+
+.content li {
+    font-size: .7rem;
+    list-style: none;
+    padding: 0;
+    
+}
+
+.content li:hover {
+    cursor: pointer;
+    background: rgb(133, 136, 133);
+}
+

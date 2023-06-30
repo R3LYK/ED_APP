@@ -4,6 +4,8 @@ import usePersistQuery from "../../../hooks/usePersistQuery";
 import TextareaAutosize from "react-textarea-autosize";
 import { formatQuestions } from "../../../utils/questionUtils";
 import QuestionForm from "./QuestionForm.js";
+import GetTeacherClasses from "../../teacher/GetTeacherClasses.js";
+import { generateAssignmentQueryStructure } from "../../../query-constants/structuredGPTQuerys.js";
 
 const CreateAssignment = () => {
   const [quizQuestions, setQuizQuestions] = useState("");
@@ -15,6 +17,10 @@ const CreateAssignment = () => {
   const [showQuestionForm, setShowQuestionForm] = useState(false);
   const [showCreateAssignment, setShowCreateAssignment] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const [teacherClasses, setTeacherClasses] = useState([]);
+  const [selectedClassCode, setSelectedClassCode] = useState("");
+  
 
   const setQuestionsToKeep = () => {
     // This is a dummy function that does nothing
@@ -31,6 +37,15 @@ const CreateAssignment = () => {
     setQuestionType(value);
   };
 
+  const handleTeacherClassChange = (teacherClasses) => {
+    setTeacherClasses(teacherClasses);
+  };
+
+  const handleClassCodeChange = (e) => {
+    const value = e.target.value;
+    setSelectedClassCode(value);
+  };
+
   const handleSubmit = useCallback(
     async (event) => {
       event.preventDefault();
@@ -45,22 +60,14 @@ const CreateAssignment = () => {
 
       const selectedNumOfQuestions = numOfQuestions;
       const selectedQuestionType = questionType;
+      const classCode = selectedClassCode;
 
-      const updatedQuizQuestions = `Create ${selectedNumOfQuestions} questions of type ${selectedQuestionType}.
-      The questions should be about the following topic: ${quizQuestions}.
-      If questions are of type 'multiple choice', answers must always be ordered with capital letters, alphabetically, followed with a parenthesis. 
-      All data within this conversation MUST ALWAYS be returned as a valid JSON object, without line breaks, like this. [
-        {
-          "question": "What is the value of the digit '6' in the number 6,412?",
-          "choices": ["A) 6", "B) 12", "C) 412", "D) 4,000"],
-          "answer": "D) 4,000"
-        },
-        {
-          "question": "Which of the following fractions is equivalent to 3/4?",
-          "choices": ["A) 6/8", "B) 5/8", "C) 2/3", "D) 1/2"],
-          "answer": "A) 6/8"
-        }
-      ] Please reply with RFC8259 compliant JSON`;
+      const updatedQuizQuestions = generateAssignmentQueryStructure(
+        selectedNumOfQuestions,
+        selectedQuestionType,
+        quizQuestions,
+        classCode
+      );
 
       handleQueryGPT({ prompt: updatedQuizQuestions });
       setShowQuestionForm(true);
@@ -71,7 +78,7 @@ const CreateAssignment = () => {
   useEffect(() => {
     if (responseData && responseData.reply) {
       const formattedQuestions = formatQuestions(
-        responseData.reply,
+        responseData.reply
         //questionType
       );
       setFormattedQuestions(formattedQuestions);
@@ -101,6 +108,27 @@ const CreateAssignment = () => {
                 ))}
               </select>
             </div>
+            <div>
+              <GetTeacherClasses
+                onTeacherClassChange={handleTeacherClassChange}
+              />
+
+              <label htmlFor="classType-input">Choose the class code</label>
+              <div>
+                <select
+                  id="classType-input"
+                  value={selectedClassCode}
+                  onChange={handleClassCodeChange}
+                >
+                  <option value="">Choose class code</option>
+                  {teacherClasses.map((classCode, index) => (
+                    <option key={index} value={classCode}>
+                      {classCode}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
             <label htmlFor="questionType-input">Question Type:</label>
             <div className="input-container">
               <select
@@ -109,14 +137,17 @@ const CreateAssignment = () => {
                 onChange={handleQuestionTypeChange}
               >
                 <option value="multiple choice">Multiple Choice</option>
-                <option value="trueFalse">True or False</option>
-                <option value="shortAnswer">Short Answer</option>
+                <option value="true false">True or False</option>
+                <option value="short answer">Short Answer</option>
+                <option value="long answer">Long Answer</option>
+                <option value="fill in the blank">Fill in the Blank</option>
               </select>
             </div>
 
             <label htmlFor="quizQuestions-input">
               Create Tests or Assignments:
             </label>
+            {/* TODO: Fix the issue with this re-rendering on every character input */}
             <div className="input-container">
               <TextareaAutosize
                 placeholder="Generate Lesson Plan"
@@ -124,9 +155,7 @@ const CreateAssignment = () => {
                 value={quizQuestions}
                 onChange={(e) => setQuizQuestions(e.target.value)}
               />
-              {errorMessage && (
-                <p className="error-message">{errorMessage}</p>
-              )}
+              {errorMessage && <p className="error-message">{errorMessage}</p>}
             </div>
 
             <button type="submit" className="submit-button">

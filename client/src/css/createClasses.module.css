@@ -11,6 +11,8 @@
   background-color: #fabd6c;
   padding: 1rem;
   border-radius: .7rem;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;  
+
 }
 
 .flex-container {
@@ -35,11 +37,17 @@
   justify-content: space-around;
   align-items: center;
   font-size: 20px;
+  
 }
 
 .code-items-container ul {
   column-count: 2;
   column-gap: 2rem;
+  background-color: rgb(247, 239, 239);
+box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;  
+  
+  padding: 1rem 2rem;
+  border-radius: .7rem;
 }
 
 .code-items-container ul li {
@@ -64,10 +72,6 @@
   margin: 0 auto;
   display: block;
   padding-top: 0.5rem;
-}
-
-.flex-2 h3 {
-  background-color: antiquewhite;
 }
 
 .selected-classes-container {

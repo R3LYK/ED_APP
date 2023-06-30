@@ -1,0 +1,17 @@
+.card-container {
+    background-color: rgb(247, 239, 239);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: .7rem;
+    margin-top: 1rem;
+}
+
+.card-container h3 {
+    text-decoration: none;
+}
+
+/* .checkbox-container {
+
+} */

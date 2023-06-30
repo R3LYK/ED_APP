@@ -6,6 +6,8 @@ import AddNewClassCodeButton from "../../components/teacher/classCodes/AddNewCla
 import GetTeacherClasses from "../../components/teacher/GetTeacherClasses";
 import BuildClass from "../../components/teacher/cohorts/BuildClass";
 
+import Accordion from "../../components/Accordion";
+
 const CreateClasses = () => {
   //classCode states
   const [classType, setClassType] = useState("");
@@ -21,15 +23,15 @@ const CreateClasses = () => {
     setTeacherClasses(teacherClasses);
   };
 
-  const handleClassCodeChange = (e) => {
-    const value = e.target.value;
+  const handleClassCodeChange = (value) => {
     setSelectedClassCode(value);
   };
+  
 
-  const handleClassTypeChange = (e) => {
-    const value = e.target.value;
+  const handleClassTypeChange = (value) => {
     setClassType(value);
   };
+  
 
   const handleItemClick = (item) => {
     setClassCode([...classCode, item]);
@@ -61,17 +63,8 @@ const CreateClasses = () => {
           <form>
             <label htmlFor="classType-input">Add your class code:</label>
             <div>
-              <select
-                id="classType-input"
-                value={classType}
-                onChange={handleClassTypeChange}
-              >
-                <option value="">Select a class type</option>
-                <option value="language_arts">Language Arts</option>
-                <option value="mathematics">Mathematics</option>
-                <option value="science">Science</option>
-                <option value="social_studies">Social Studies</option>
-              </select>
+            <Accordion title="Select a class type" content={["Language Arts", "Mathematics", "Science", "Social Studies"]} />
+
             </div>
           </form>
         </div>
@@ -80,18 +73,8 @@ const CreateClasses = () => {
           <form>
             <label htmlFor="classType-input">Choose the class code</label>
             <div>
-              <select
-                id="classType-input"
-                value={selectedClassCode}
-                onChange={handleClassCodeChange}
-              >
-                <option value="">Choose class code</option>
-                {teacherClasses.map((classCode, index) => (
-                  <option key={index} value={classCode}>
-                    {classCode}
-                  </option>
-                ))}
-              </select>
+            <Accordion title="Choose the class code" content={teacherClasses} />
+
             </div>
           </form>
         </div>

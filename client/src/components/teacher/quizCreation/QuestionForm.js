@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback,useContext } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
+import Card from "../../../components/QuestionCard";
 import { QuestionProvider, QuestionContext } from "./VerifyQuiz";
 import usePersistQuery from "../../../hooks/usePersistQuery";
 import { formatQuestions } from "../../../utils/questionUtils";
@@ -73,34 +74,15 @@ const QuestionForm = ({ questions, setFormattedQuestions }) => {
           <div>
             <h2>Proposed Questions:</h2>
             {questions.map((question, index) => (
-              <div key={index}>
-                <h3>Question {index + 1}</h3>
-                <p>{question.question}</p>
-                <ul>
-                  {question.choices.map((choice, choiceIndex) => (
-                    <li key={choiceIndex}>{choice}</li>
-                  ))}
-                  <li>Answer: {question.answer}</li>
-                </ul>
-                <label>
-                  Keep:
-                  <input
-                    type="checkbox"
-                    checked={selectedOptions[index] === "keep"}
-                    onChange={() => handleOptionChange(index, "keep")}
-                  />
-                </label>
-                <label>
-                  Regenerate:
-                  <input
-                    type="checkbox"
-                    checked={selectedOptions[index] === "regenerate"}
-                    onChange={() => handleOptionChange(index, "regenerate")}
-                  />
-                </label>
-              </div>
+              <Card
+                key={index}
+                questionNum={index + 1}
+                question={question.question}
+                choices={question.choices}
+                answer={question.answer}
+                handleOptionChange={handleOptionChange}
+              />
             ))}
-
             <button onClick={handleSubmit}>Submit</button>
             <span>Question total: {questions.length}</span>
           </div>

@@ -56,6 +56,23 @@ export const language_arts = [
     "NGSS.ETS1.A.3",
     "NGSS.PS2.B.1",
     "NGSS.ES2.C.1",
+    "HS-PS1-1",
+    "HS-PS1-2",
+    "HS-PS1-3",
+    "HS-PS1-4",
+    "HS-PS1-5",
+    "HS-PS2-1",
+    "HS-PS2-2",
+    "HS-PS2-3",
+    "HS-PS3-1",
+    "HS-PS3-2",
+    "HS-PS3-3",
+    "HS-PS3-4",
+    "HS-PS3-5",
+    "HS-PS4-1",
+    "HS-PS4-2",
+    "HS-PS4-3",
+
   ];
   
   export const social_studies = [

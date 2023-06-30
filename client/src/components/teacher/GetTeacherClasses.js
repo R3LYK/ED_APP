@@ -1,10 +1,11 @@
-import axios from "../../../api/axios";
-import useAuth from "../../../hooks/useAuth";
+import axios from "../../api/axios";
+import useAuth from "../../hooks/useAuth";
 import React, { useEffect } from "react";
 
 const GET_TEACHER_CLASSES_URL = "/teacher";
 
 const GetTeacherClasses = ({ onTeacherClassChange }) => {
+  console.log("in GetTeacherClasses");
   const { auth } = useAuth();
   const accessToken = auth.accessToken;
   const userId = auth.id;

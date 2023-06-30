@@ -13,10 +13,6 @@ const GetAssignments = ({ renderLayout }) => {
   const [selectedAssignment, setSelectedAssignment] = useState(null);
 
   const getAssignments = async () => {
-    console.log("getAssignments");
-    console.log("teacherID: ", teacherId);
-    console.log("accessToken: ", accessToken);
-    console.log(GET_ASSIGNMENTS_URL);
     try {
       if (!auth || !auth.id) {
         console.log("Unauthorized access");
