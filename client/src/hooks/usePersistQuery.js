@@ -20,6 +20,7 @@ const usePersistQuery = () => {
 
     // Handle the response from the backend as needed
     setResponseData(response.reply);
+    console.log("response.reply: ", response.reply);
 
     return response; // Return the response object
   };

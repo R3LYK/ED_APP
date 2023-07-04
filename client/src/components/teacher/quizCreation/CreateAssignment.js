@@ -20,11 +20,27 @@ const CreateAssignment = () => {
 
   const [teacherClasses, setTeacherClasses] = useState([]);
   const [selectedClassCode, setSelectedClassCode] = useState("");
-  
+  const [selectedDimensionSEP, setSelectedDimensionSEP] = useState("");
+  const [selectedDimensionCCC, setSelectedDimensionCCC] = useState("");
+  const [selectedDimensionDCI, setSelectedDimensionDCI] = useState("");
+  const [selectedQuestionBoundary, setSelectedQuestionBoundary] = useState("");
+  const [selectedBoundaryTopic, setSelectedBoundaryTopic] = useState("");
 
   const setQuestionsToKeep = () => {
     // This is a dummy function that does nothing
     //except make everything work
+  };
+
+  const handleSelectedQuestionBoundaryChange = (e) => {
+    const value = e.target.value;
+    setSelectedQuestionBoundary(value);
+    console.log("sqb", selectedQuestionBoundary);
+  };
+
+  const handleSelectedBoundaryTopicChange = (e) => {
+    const value = e.target.value;
+    setSelectedBoundaryTopic(value);
+    console.log("sbt", selectedBoundaryTopic);
   };
 
   const handleNumOfQuestionsChange = (e) => {
@@ -35,6 +51,7 @@ const CreateAssignment = () => {
   const handleQuestionTypeChange = (e) => {
     const value = e.target.value;
     setQuestionType(value);
+    console.log("question type", questionType);
   };
 
   const handleTeacherClassChange = (teacherClasses) => {
@@ -44,6 +61,79 @@ const CreateAssignment = () => {
   const handleClassCodeChange = (e) => {
     const value = e.target.value;
     setSelectedClassCode(value);
+    console.log("class code", selectedClassCode);
+  };
+
+  const scienceAndEngineeringPracticesArray = [
+    "Asking questions",
+    "Developing and using models",
+    "Planning and carrying out investigations",
+    "Analyzing and interpreting data",
+    "Constructing explanations",
+    "Engaging in argument from evidence",
+    "Obtaining, evaluating, and communicating information",
+  ];
+
+
+
+  const questionBoundary = ["Patterns in the Periodic Table", "something else"];
+
+  const boundaryTopic = [
+    "Trends in atomic radius",
+    "Trends in ionization energy",
+    "Trends in electronegativity",
+    "Trends in reactivity",
+    "Valence Electrons and Chemical Properties",
+    "Determining the number of valence electrons for an element",
+    "Explaining how the number of valence electrons influences chemical bonding",
+    "Predicting the reactivity of elements based on their valence electron configuration",
+    "Electron Configuration and the Periodic Table",
+    "Understanding the arrangement of electrons in energy levels and sublevels",
+    "Identifying the electron configuration of elements using the periodic table",
+    "Relating electron configuration to an element's position in the periodic table",
+    "Relationships between Electron Arrangement and Element Properties",
+    "Explaining the relationship between electron arrangement and atomic size",
+    "Describing how electron arrangement affects ion formation",
+    "Relating electron configuration to the chemical behavior of elements",
+    "Using the Periodic Table to Predict Properties",
+    "Using the periodic table to predict the properties of elements (e.g., reactivity, electronegativity, atomic radius)",
+    "Comparing and contrasting the properties of elements within groups and periods of the periodic table",
+    "Analyzing the periodic trends of properties based on the arrangement of elements in the periodic table",
+  ];
+
+  const crosscuttingConceptsArray = [
+    "Patterns",
+    "Cause and effect",
+    "Scale, proportion, and quantity",
+    "Systems and system models",
+    "Energy and matter",
+    "Structure and function",
+    "Stability and change",
+  ];
+
+  const coreIdeas = [
+    "Key ideas in physical sciences",
+    "Key ideas in life sciences",
+    "Key ideas in earth and space sciences",
+    "Key ideas in engineering, technology, and applications of science",
+  ];
+
+  const handleSelectedDimensionSEPChange = (e) => {
+    const value = e.target.value;
+    setSelectedDimensionSEP(value);
+    console.log("sep", selectedDimensionSEP);
+  };
+
+  const handleSelectedDimenstionCCCChange = (e) => {
+    const value = e.target.value;
+    setSelectedDimensionCCC(value);
+    console.log("ccc", selectedDimensionCCC);
+  };
+
+  const handleSelectedDimenstionDCIChange = (e) => {
+    const value = e.target.value;
+    setSelectedDimensionDCI(value);
+    console.log("dci", selectedDimensionDCI);
   };
 
   const handleSubmit = useCallback(
@@ -64,9 +154,9 @@ const CreateAssignment = () => {
 
       const updatedQuizQuestions = generateAssignmentQueryStructure(
         selectedNumOfQuestions,
-        selectedQuestionType,
-        quizQuestions,
-        classCode
+        classCode,
+        selectedQuestionBoundary,
+        selectedBoundaryTopic
       );
 
       handleQueryGPT({ prompt: updatedQuizQuestions });
@@ -94,20 +184,6 @@ const CreateAssignment = () => {
           <p>This is where teachers can create lesson plans.</p>
           <p>And probably other stuff...</p>
           <form className="gpt-form" onSubmit={handleSubmit}>
-            <label htmlFor="numOfQuestions-input">Number of Questions:</label>
-            <div className="input-container">
-              <select
-                id="numOfQuestions-input"
-                value={numOfQuestions}
-                onChange={handleNumOfQuestionsChange}
-              >
-                {Array.from({ length: 50 }, (_, index) => (
-                  <option key={index + 1} value={index + 1}>
-                    {index + 1}
-                  </option>
-                ))}
-              </select>
-            </div>
             <div>
               <GetTeacherClasses
                 onTeacherClassChange={handleTeacherClassChange}
@@ -129,6 +205,116 @@ const CreateAssignment = () => {
                 </select>
               </div>
             </div>
+            <div>
+              <GetTeacherClasses
+                onTeacherClassChange={handleTeacherClassChange}
+              />
+              <label htmlFor="classType-input">THIS IS THE NEXT THING</label>
+              <div>
+                <label htmlFor="questionBoundary-input">Question Scope</label>
+                <div>
+                  <br></br>
+                  <h6>Question boundary</h6>
+                  <select
+                    id="questionBoundary-input"
+                    value={selectedQuestionBoundary}
+                    onChange={handleSelectedQuestionBoundaryChange}
+                  >
+                    <option value="">Question Scope</option>
+                    {questionBoundary.map((questBound, index) => (
+                      <option key={index} value={questBound}>
+                        {questBound}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <br></br>
+                      <h6>Boundary topic</h6>
+                      
+              <div>sep
+                <select
+                  id="boundaryTopic-input"
+                  value={selectedBoundaryTopic}
+                  onChange={handleSelectedBoundaryTopicChange}
+                >
+                  <option value="">Boundary topic</option>
+                  {boundaryTopic.map((topic, index) => (
+                    <option key={index} value={topic}>
+                      {topic}
+                    </option>
+                  ))}
+                </select>
+              </div>
+                    <br></br>
+                    <h6>SEP</h6>
+              <div>
+                <select
+                  id="SEP-input"
+                  value={selectedDimensionSEP}
+                  onChange={handleSelectedDimensionSEPChange}
+                >
+                  <option value="">select</option>
+                  {scienceAndEngineeringPracticesArray.map(
+                    (practice, index) => (
+                      <option key={index} value={practice}>
+                        {practice}
+                      </option>
+                    )
+                  )}
+                </select>
+              </div>
+              <br></br>
+              <h6>DCI</h6>
+
+              <div>
+                <select
+                  id="DCI-input"
+                  value={selectedDimensionDCI}
+                  onChange={handleSelectedDimenstionDCIChange}
+                >
+                  <option value="">select</option>
+                  {coreIdeas.map((core, index) => (
+                    <option key={index} value={core}>
+                      {core}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <br></br>
+              <h6>CCC</h6>
+
+              <div>
+                <select
+                  id="CCC-input"
+                  value={selectedDimensionCCC}
+                  onChange={handleSelectedDimenstionCCCChange}
+                >
+                  <option value="">select</option>
+                  {crosscuttingConceptsArray.map((concepts, index) => (
+                    <option key={index} value={concepts}>
+                      {concepts}
+                    </option>
+                  ))}
+                </select>
+              </div>
+          
+            </div>
+            <label htmlFor="numOfQuestions-input">Number of Questions:</label>
+            <div className="input-container">
+              <select
+                id="numOfQuestions-input"
+                value={numOfQuestions}
+                onChange={handleNumOfQuestionsChange}
+              >
+                {Array.from({ length: 50 }, (_, index) => (
+                  <option key={index + 1} value={index + 1}>
+                    {index + 1}
+                  </option>
+                ))}
+              </select>
+            </div>
+
             <label htmlFor="questionType-input">Question Type:</label>
             <div className="input-container">
               <select
@@ -139,7 +325,7 @@ const CreateAssignment = () => {
                 <option value="multiple choice">Multiple Choice</option>
                 <option value="true false">True or False</option>
                 <option value="short answer">Short Answer</option>
-                <option value="long answer">Long Answer</option>
+                <option value="American college testing long form response">ACT form</option>
                 <option value="fill in the blank">Fill in the Blank</option>
               </select>
             </div>
